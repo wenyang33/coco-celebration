@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ 霍格沃茨婚礼挑战赛 ⚡</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Noto+Sans+SC:wght@400;700;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 25%, #0d0d2b 50%, #141432 75%, #0a0a1a 100%);
+            background-attachment: fixed;
+            color: #e8d5b5;
+            min-height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Magical stars background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(1px 1px at 15% 25%, rgba(255, 215, 0, 0.6), transparent),
+                radial-gradient(1.5px 1.5px at 35% 65%, rgba(255, 223, 120, 0.5), transparent),
+                radial-gradient(1px 1px at 55% 15%, rgba(255, 215, 0, 0.6), transparent),
+                radial-gradient(2px 2px at 75% 45%, rgba(255, 223, 120, 0.4), transparent),
+                radial-gradient(1px 1px at 10% 75%, rgba(200, 180, 140, 0.5), transparent),
+                radial-gradient(1.5px 1.5px at 85% 85%, rgba(255, 215, 0, 0.3), transparent),
+                radial-gradient(1px 1px at 45% 55%, rgba(255, 223, 120, 0.4), transparent),
+                radial-gradient(2px 2px at 65% 90%, rgba(255, 215, 0, 0.3), transparent),
+                radial-gradient(1px 1px at 90% 30%, rgba(200, 180, 140, 0.5), transparent),
+                radial-gradient(1.5px 1.5px at 25% 50%, rgba(255, 215, 0, 0.3), transparent),
+                radial-gradient(1px 1px at 5% 40%, rgba(255, 223, 120, 0.4), transparent),
+                radial-gradient(1px 1px at 50% 80%, rgba(255, 215, 0, 0.5), transparent);
+            animation: twinkle 5s ease-in-out infinite alternate;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+            100% { opacity: 0.5; }
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 15px 20px 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== Header: Title & Round Info ===== */
+        .game-title {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 1.6em;
+            font-weight: 900;
+            letter-spacing: 6px;
+            background: linear-gradient(180deg, #ffd700, #c8a84e, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 2px 8px rgba(255, 215, 0, 0.3));
+            padding: 5px 0 0;
+        }
+
+        .round-info {
+            text-align: center;
+            padding: 4px 0 8px;
+            font-size: 1.2em;
+            color: rgba(232, 213, 181, 0.7);
+            letter-spacing: 3px;
+            font-family: 'Cinzel', serif;
+        }
+
+        .round-info span {
+            background: linear-gradient(90deg, #ffd700, #c8a84e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+            font-size: 1.2em;
+        }
+
+        /* ===== Scoreboard ===== */
+        .scoreboard {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            padding: 10px 0 15px;
+            flex-wrap: wrap;
+        }
+
+        .team-card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(200, 168, 78, 0.25);
+            border-radius: 12px;
+            padding: 12px 28px;
+            text-align: center;
+            min-width: 200px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            border-radius: 12px 12px 0 0;
+        }
+
+        /* Gryffindor: red/gold */
+        .team-card:nth-child(1)::before { background: linear-gradient(90deg, #ae0001, #d3a625); }
+        /* Slytherin: green/silver */
+        .team-card:nth-child(2)::before { background: linear-gradient(90deg, #1a472a, #5d5d5d); }
+        /* Ravenclaw: blue/bronze */
+        .team-card:nth-child(3)::before { background: linear-gradient(90deg, #0e1a40, #946b2d); }
+
+        .team-card.highlight {
+            transform: scale(1.05);
+            border-color: rgba(255, 215, 0, 0.7);
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.15), inset 0 0 20px rgba(255, 215, 0, 0.05);
+        }
+
+        .team-name {
+            font-size: 1.1em;
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            border-bottom: 1px dashed transparent;
+            transition: border-color 0.2s;
+            font-family: 'Cinzel', 'Noto Sans SC', serif;
+        }
+
+        .team-name:hover {
+            border-bottom-color: rgba(232, 213, 181, 0.3);
+        }
+
+        .team-name-input {
+            font-size: 1.1em;
+            font-weight: 700;
+            letter-spacing: 2px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(200, 168, 78, 0.4);
+            border-radius: 6px;
+            color: inherit;
+            text-align: center;
+            padding: 2px 6px;
+            width: 140px;
+            outline: none;
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+
+        .team-card:nth-child(1) .team-name { color: #e74c3c; }
+        .team-card:nth-child(2) .team-name { color: #2ecc71; }
+        .team-card:nth-child(3) .team-name { color: #5b9bd5; }
+
+        .team-scores {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            font-size: 0.8em;
+            color: rgba(232, 213, 181, 0.45);
+            margin-bottom: 4px;
+        }
+
+        .team-total {
+            font-size: 2.2em;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.25);
+            font-family: 'Cinzel', serif;
+        }
+
+        .team-time {
+            font-size: 0.85em;
+            color: rgba(200, 168, 78, 0.7);
+            margin: 4px 0 2px;
+            min-height: 1.2em;
+            letter-spacing: 1px;
+        }
+
+        .team-time span {
+            display: inline-block;
+            margin: 0 4px;
+            padding: 1px 6px;
+            background: rgba(200, 168, 78, 0.1);
+            border-radius: 4px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .score-btn {
+            background: rgba(200, 168, 78, 0.08);
+            border: 1px solid rgba(200, 168, 78, 0.25);
+            color: #e8d5b5;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 700;
+            margin: 4px 3px 0;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .score-btn:hover {
+            background: rgba(255, 215, 0, 0.2);
+            border-color: rgba(255, 215, 0, 0.5);
+            transform: scale(1.1);
+        }
+
+        /* ===== Main Action Display ===== */
+        .action-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        .action-display {
+            width: 90%;
+            max-width: 1000px;
+            min-height: 220px;
+            background: linear-gradient(145deg, rgba(200, 168, 78, 0.06), rgba(10, 10, 26, 0.8));
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(200, 168, 78, 0.2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 50px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 0 40px rgba(200, 168, 78, 0.03);
+        }
+
+        .action-display::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(200, 168, 78, 0.04), transparent, rgba(200, 168, 78, 0.02), transparent);
+            animation: rotate 10s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .action-text {
+            font-size: 3.2em;
+            font-weight: 900;
+            text-align: center;
+            line-height: 1.4;
+            z-index: 1;
+            transition: all 0.1s;
+            background: linear-gradient(180deg, #ffecd2, #c8a84e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: none;
+            filter: drop-shadow(0 2px 10px rgba(200, 168, 78, 0.2));
+        }
+
+        .action-text.rolling {
+            animation: textBlur 0.08s ease-in-out infinite;
+        }
+
+        @keyframes textBlur {
+            0% { filter: blur(0px) drop-shadow(0 2px 10px rgba(200, 168, 78, 0.2)); }
+            50% { filter: blur(2px) drop-shadow(0 2px 10px rgba(200, 168, 78, 0.2)); }
+            100% { filter: blur(0px) drop-shadow(0 2px 10px rgba(200, 168, 78, 0.2)); }
+        }
+
+        .action-text.revealed {
+            animation: revealPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes revealPop {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .action-label {
+            position: absolute;
+            top: 15px;
+            left: 25px;
+            font-size: 0.85em;
+            color: rgba(200, 168, 78, 0.5);
+            letter-spacing: 3px;
+            z-index: 1;
+            font-family: 'Cinzel', serif;
+        }
+
+        .roll-btn {
+            margin-top: 20px;
+            padding: 14px 50px;
+            font-size: 1.3em;
+            font-weight: 700;
+            font-family: 'Cinzel', 'Noto Sans SC', serif;
+            background: linear-gradient(135deg, #c8a84e, #a07828, #c8a84e);
+            color: #1a1a3e;
+            border: 2px solid rgba(200, 168, 78, 0.4);
+            border-radius: 8px;
+            cursor: pointer;
+            letter-spacing: 3px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(200, 168, 78, 0.25);
+        }
+
+        .roll-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(200, 168, 78, 0.4);
+            background: linear-gradient(135deg, #d4b85c, #b8922e, #d4b85c);
+        }
+
+        .roll-btn:active {
+            transform: translateY(0);
+        }
+
+        .roll-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .roll-btn.rolling-active {
+            background: linear-gradient(135deg, #ae0001, #d32f2f);
+            border-color: rgba(174, 0, 1, 0.6);
+            color: #ffd700;
+            animation: rollBtnPulse 0.5s ease-in-out infinite;
+        }
+
+        @keyframes rollBtnPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* ===== Bottom Section: Controls Left + Timer Right ===== */
+        .bottom-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            padding: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .controls-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        /* Timer Controls Row */
+        .timer-controls-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .timer-btn {
+            padding: 10px 24px;
+            font-size: 1em;
+            font-weight: 700;
+            font-family: 'Noto Sans SC', sans-serif;
+            border: 2px solid;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: 2px;
+        }
+
+        .btn-start {
+            background: rgba(46, 204, 113, 0.12);
+            border-color: #2ecc71;
+            color: #2ecc71;
+        }
+        .btn-start:hover { background: rgba(46, 204, 113, 0.25); }
+
+        .btn-stop {
+            background: rgba(174, 0, 1, 0.12);
+            border-color: #ae0001;
+            color: #e74c3c;
+        }
+        .btn-stop:hover { background: rgba(174, 0, 1, 0.25); }
+
+        .btn-reset {
+            background: rgba(232, 213, 181, 0.06);
+            border-color: rgba(232, 213, 181, 0.25);
+            color: rgba(232, 213, 181, 0.6);
+        }
+        .btn-reset:hover { background: rgba(232, 213, 181, 0.12); }
+
+        /* Timer Display */
+        .timer-display {
+            font-size: 6em;
+            font-weight: 900;
+            font-variant-numeric: tabular-nums;
+            font-family: 'Cinzel', serif;
+            color: #e8d5b5;
+            text-shadow: 0 0 30px rgba(200, 168, 78, 0.2);
+            min-width: 280px;
+            text-align: center;
+            letter-spacing: 3px;
+        }
+
+        .timer-display.running {
+            color: #2ecc71;
+            text-shadow: 0 0 30px rgba(46, 204, 113, 0.3);
+        }
+
+        .timer-display.stopped {
+            color: #e74c3c;
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        /* ===== Round Control ===== */
+        .round-controls {
+            position: fixed;
+            top: 10px;
+            right: 20px;
+            z-index: 10;
+        }
+
+        .round-btn {
+            padding: 6px 16px;
+            font-size: 0.8em;
+            font-family: 'Noto Sans SC', sans-serif;
+            background: rgba(200, 168, 78, 0.08);
+            border: 1px solid rgba(200, 168, 78, 0.25);
+            color: rgba(232, 213, 181, 0.6);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-left: 6px;
+        }
+
+        .round-btn:hover {
+            background: rgba(200, 168, 78, 0.2);
+            border-color: rgba(200, 168, 78, 0.5);
+            color: #ffd700;
+        }
+
+        /* ===== Confetti (Golden Sparks) ===== */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            top: -10px;
+            opacity: 0;
+            animation: confettiFall 3s ease-in-out forwards;
+        }
+
+        @keyframes confettiFall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* ===== Rules Overlay ===== */
+        .rules-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 15, 0.96);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .rules-content {
+            text-align: center;
+            padding: 40px;
+            max-width: 90%;
+            cursor: default;
+        }
+
+        .rules-title {
+            font-size: 3em;
+            font-weight: 900;
+            font-family: 'Cinzel', serif;
+            color: #ffd700;
+            margin-bottom: 50px;
+            letter-spacing: 5px;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.25);
+        }
+
+        .rules-body {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: #e8d5b5;
+            line-height: 2.2;
+            letter-spacing: 2px;
+        }
+
+        .rules-body .rule-item {
+            margin-bottom: 30px;
+        }
+
+        .rules-hint {
+            margin-top: 60px;
+            font-size: 1em;
+            color: rgba(232, 213, 181, 0.25);
+            letter-spacing: 3px;
+        }
+
+        /* ===== Rules Button ===== */
+        .rules-btn {
+            padding: 8px 28px;
+            font-size: 1em;
+            font-family: 'Cinzel', 'Noto Sans SC', serif;
+            background: rgba(200, 168, 78, 0.1);
+            border: 1px solid rgba(200, 168, 78, 0.35);
+            color: #c8a84e;
+            border-radius: 8px;
+            cursor: pointer;
+            letter-spacing: 2px;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+
+        .rules-btn:hover {
+            background: rgba(200, 168, 78, 0.2);
+            border-color: rgba(200, 168, 78, 0.6);
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 900px) {
+            .scoreboard { gap: 15px; }
+            .team-card { min-width: 150px; padding: 10px 20px; }
+            .action-text { font-size: 2.2em; }
+            .action-display { padding: 20px 25px; min-height: 160px; }
+            .timer-display { font-size: 4em; min-width: 200px; }
+            .bottom-section { gap: 20px; }
+            .game-title { font-size: 1.3em; }
+        }
+
+        @media (max-width: 640px) {
+            .container { padding: 10px 10px 20px; }
+            .scoreboard { flex-direction: column; align-items: center; gap: 10px; }
+            .team-card { min-width: 90%; }
+            .action-text { font-size: 1.6em; }
+            .action-display { width: 95%; padding: 20px 15px; min-height: 120px; }
+            .roll-btn { padding: 12px 30px; font-size: 1.1em; }
+            .bottom-section { flex-direction: column; align-items: center; gap: 15px; }
+            .controls-panel { align-items: center; }
+            .timer-display { font-size: 3.5em; min-width: 180px; }
+            .timer-btn { padding: 8px 16px; font-size: 0.85em; }
+            .round-controls { position: static; text-align: center; padding: 5px 0; }
+            .round-info { font-size: 1em; }
+            .game-title { font-size: 1.1em; letter-spacing: 3px; }
+            .rules-title { font-size: 2em; }
+            .rules-body { font-size: 1.4em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <!-- Rules Full-Screen Overlay -->
+    <div class="rules-overlay" id="rulesOverlay" onclick="if(event.target===this)this.style.display='none'">
+        <div class="rules-content">
+            <div class="rules-title">📜 霍格沃茨挑战规则 📜</div>
+            <div class="rules-body">
+                <div class="rule-item">1️⃣ 每队派一位巫师上场，<span style="color:#e74c3c; font-weight:900;">不能看大屏幕</span></div>
+                <div class="rule-item">2️⃣ 队友用 <span style="color:#2ecc71; font-weight:900; font-size:1.1em;">YES</span> / <span style="color:#e74c3c; font-weight:900; font-size:1.1em;">NO</span> 引导<br><span style="font-size:0.7em; color:rgba(232,213,181,0.4);">（靠近目标 = YES，远离目标 = NO）</span></div>
+                <div class="rule-item" style="margin-bottom:0;">3️⃣ 用时最短获胜，分别获得 <span style="color:#ffd700; font-size:1.3em; font-weight:900;">3</span> / <span style="color:#c0c0c0; font-size:1.3em; font-weight:900;">2</span> / <span style="color:#cd7f32; font-size:1.3em; font-weight:900;">1</span> 积分 🏆</div>
+            </div>
+            <div class="rules-hint">点击任意处关闭</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Title -->
+        <div class="game-title">⚡ HOGWARTS WEDDING CHALLENGE ⚡</div>
+
+        <!-- Round Info -->
+        <div class="round-info">
+            🪄 当前：第 <span id="currentRound">1</span> 轮 🪄
+        </div>
+
+        <!-- Rules Button -->
+        <div style="text-align:center; margin:5px 0 10px;">
+            <button class="rules-btn" onclick="document.getElementById('rulesOverlay').style.display='flex'">📜 显示规则</button>
+        </div>
+
+        <!-- Round Controls -->
+        <div class="round-controls">
+            <button class="round-btn" onclick="switchRound(1)">第1轮</button>
+            <button class="round-btn" onclick="switchRound(2)">第2轮</button>
+            <button class="round-btn" onclick="resetAll()">重置全部</button>
+        </div>
+
+        <!-- Scoreboard -->
+        <div class="scoreboard">
+            <div class="team-card" id="team1Card" onclick="selectTeam(1)" style="cursor:pointer">
+                <div class="team-name" ondblclick="editTeamName(this, 1)">🦁 格兰芬多</div>
+                <div class="team-scores">
+                    <span>R1: <span id="team1r1">0</span></span>
+                    <span>R2: <span id="team1r2">0</span></span>
+                </div>
+                <div class="team-total" id="team1Total">0</div>
+                <div class="team-time" id="team1Time"></div>
+                <div>
+                    <button class="score-btn" onclick="changeScore(1, -1)">−</button>
+                    <button class="score-btn" onclick="changeScore(1, 1)">+</button>
+                </div>
+            </div>
+            <div class="team-card" id="team2Card" onclick="selectTeam(2)" style="cursor:pointer">
+                <div class="team-name" ondblclick="editTeamName(this, 2)">🐍 斯莱特林</div>
+                <div class="team-scores">
+                    <span>R1: <span id="team2r1">0</span></span>
+                    <span>R2: <span id="team2r2">0</span></span>
+                </div>
+                <div class="team-total" id="team2Total">0</div>
+                <div class="team-time" id="team2Time"></div>
+                <div>
+                    <button class="score-btn" onclick="changeScore(2, -1)">−</button>
+                    <button class="score-btn" onclick="changeScore(2, 1)">+</button>
+                </div>
+            </div>
+            <div class="team-card" id="team3Card" onclick="selectTeam(3)" style="cursor:pointer">
+                <div class="team-name" ondblclick="editTeamName(this, 3)">🦅 拉文克劳</div>
+                <div class="team-scores">
+                    <span>R1: <span id="team3r1">0</span></span>
+                    <span>R2: <span id="team3r2">0</span></span>
+                </div>
+                <div class="team-total" id="team3Total">0</div>
+                <div class="team-time" id="team3Time"></div>
+                <div>
+                    <button class="score-btn" onclick="changeScore(3, -1)">−</button>
+                    <button class="score-btn" onclick="changeScore(3, 1)">+</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Display -->
+        <div class="action-section">
+            <div class="action-display">
+                <div class="action-label">🪄 魔法任务</div>
+                <div class="action-text" id="actionText">点击下方按钮开始抽取任务！</div>
+            </div>
+            <button class="roll-btn" id="rollBtn" onclick="toggleRoll()">⚡ 随机抽取任务</button>
+        </div>
+
+        <!-- Bottom: Controls Left + Timer Right -->
+        <div class="bottom-section">
+            <div class="controls-panel">
+                <div class="timer-controls-row">
+                    <button class="timer-btn btn-start" onclick="startTimer()">▶ 开始</button>
+                    <button class="timer-btn btn-stop" onclick="stopTimer()">⏹ 停止</button>
+                    <button class="timer-btn btn-reset" onclick="resetTimer()">↺ 重置</button>
+                </div>
+            </div>
+            <div class="timer-display" id="timerDisplay">00:00</div>
+        </div>
+    </div>
+
+    <script>
+        // ===== Actions =====
+        const actions = [
+            "把桌上的一把叉子插进院子的土里",
+            "单膝跪地和新郎击掌",
+            "把你的右脸贴在一扇窗户上",
+            "用屁股碰一下新娘的椅子",
+            "把一张贴纸贴到新郎背上",
+            "和新郎击掌三次",
+            "亲一下新娘手背",
+            "把桌上的一朵花夹在自己耳朵上",
+            "趴在地上做三个俯卧撑（或者类似动作）",
+            "向新郎鞠躬90度",
+            "把一个杯子顶在自己头上",
+            "用左手和新郎握手，同时右脚抬起来",
+            "把一条餐巾纸披在头上像头纱一样",
+            "找到一个气球并坐爆它",
+            "和现场三个不同的人拥抱",
+            "把椅子搬到新郎旁边坐下",
+            "对着最近的镜子或手机摄像头摆pose",
+            "把桌上的筷子叼在嘴里",
+            "找到新娘的手捧花并举起来",
+            "站到椅子上面向Coco打招呼",
+            "把两只手都放在新郎的肩膀上",
+            "倒退走路绕桌子一圈",
+            "用额头顶住墙壁保持5秒",
+            "把桌上的一个苹果（或东西）藏在衣服里",
+            "单脚站立保持10秒"
+        ];
+
+        // ===== Game State =====
+        let currentRound = 1;
+        let activeTeam = 0;
+        let scores = {
+            1: { r1: 0, r2: 0 },
+            2: { r1: 0, r2: 0 },
+            3: { r1: 0, r2: 0 }
+        };
+
+        // Timer state
+        let timerInterval = null;
+        let timerSeconds = 0;
+        let timerRunning = false;
+
+        // Roll state
+        let rolling = false;
+        let rollTimeout = null;
+        let usedActions = [];
+
+        // Team names & times
+        const teamEmojis = { 1: '🦁', 2: '🐍', 3: '🦅' };
+        const teamNames = { 1: '格兰芬多', 2: '斯莱特林', 3: '拉文克劳' };
+        const teamTimes = { 1: {}, 2: {}, 3: {} };
+
+        // ===== Score Functions =====
+        function changeScore(team, delta) {
+            event.stopPropagation();
+            const roundKey = `r${currentRound}`;
+            scores[team][roundKey] = Math.max(0, scores[team][roundKey] + delta);
+            updateScoreboard();
+        }
+
+        function updateScoreboard() {
+            for (let t = 1; t <= 3; t++) {
+                document.getElementById(`team${t}r1`).textContent = scores[t].r1;
+                document.getElementById(`team${t}r2`).textContent = scores[t].r2;
+                document.getElementById(`team${t}Total`).textContent = scores[t].r1 + scores[t].r2;
+            }
+        }
+
+        // ===== Round Functions =====
+        function switchRound(round) {
+            currentRound = round;
+            document.getElementById('currentRound').textContent = round;
+        }
+
+        function resetAll() {
+            if (!confirm('确定要重置所有分数吗？')) return;
+            scores = {
+                1: { r1: 0, r2: 0 },
+                2: { r1: 0, r2: 0 },
+                3: { r1: 0, r2: 0 }
+            };
+            teamTimes[1] = {}; teamTimes[2] = {}; teamTimes[3] = {};
+            currentRound = 1;
+            document.getElementById('currentRound').textContent = 1;
+            usedActions = [];
+            updateScoreboard();
+            resetTimer();
+            for (let t = 1; t <= 3; t++) updateTeamTimeDisplay(t);
+            document.getElementById('actionText').textContent = '点击下方按钮开始抽取任务！';
+        }
+
+        // ===== Team Selection =====
+        function selectTeam(team) {
+            activeTeam = team;
+            const cards = document.querySelectorAll('.team-card');
+            cards.forEach((card, i) => {
+                card.classList.toggle('highlight', i === team - 1);
+            });
+        }
+
+        // ===== Roll / Random Selection =====
+        function toggleRoll() {
+            if (rolling) {
+                stopRoll();
+            } else {
+                startRoll();
+            }
+        }
+
+        function startRoll() {
+            rolling = true;
+            const btn = document.getElementById('rollBtn');
+            const actionEl = document.getElementById('actionText');
+            btn.textContent = '⏹ 停止抽取';
+            btn.classList.add('rolling-active');
+            actionEl.classList.add('rolling');
+            actionEl.classList.remove('revealed');
+
+            function tick() {
+                if (!rolling) return;
+                const randomAction = actions[Math.floor(Math.random() * actions.length)];
+                actionEl.textContent = randomAction;
+                rollTimeout = setTimeout(tick, 70);
+            }
+            tick();
+        }
+
+        function stopRoll() {
+            rolling = false;
+            clearTimeout(rollTimeout);
+
+            const btn = document.getElementById('rollBtn');
+            const actionEl = document.getElementById('actionText');
+
+            let available = actions.filter(a => !usedActions.includes(a));
+            if (available.length === 0) {
+                usedActions = [];
+                available = [...actions];
+            }
+
+            const finalAction = available[Math.floor(Math.random() * available.length)];
+            actionEl.textContent = finalAction;
+            actionEl.classList.remove('rolling');
+            actionEl.classList.add('revealed');
+            usedActions.push(finalAction);
+
+            btn.textContent = '⚡ 随机抽取任务';
+            btn.classList.remove('rolling-active');
+            launchConfetti();
+        }
+
+        // ===== Edit Team Name =====
+        function editTeamName(el, team) {
+            event.stopPropagation();
+            const currentName = teamNames[team];
+            const emoji = teamEmojis[team];
+            const input = document.createElement('input');
+            input.className = 'team-name-input';
+            input.value = currentName;
+            input.style.color = getComputedStyle(el).color;
+            el.replaceWith(input);
+            input.focus();
+            input.select();
+
+            function save() {
+                const newName = input.value.trim() || currentName;
+                teamNames[team] = newName;
+                const nameDiv = document.createElement('div');
+                nameDiv.className = 'team-name';
+                nameDiv.setAttribute('ondblclick', `editTeamName(this, ${team})`);
+                nameDiv.textContent = `${emoji} ${newName}`;
+                input.replaceWith(nameDiv);
+            }
+
+            input.addEventListener('blur', save);
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') input.blur();
+                if (e.key === 'Escape') { input.value = currentName; input.blur(); }
+            });
+        }
+
+        // ===== Timer Functions =====
+        function startTimer() {
+            if (timerRunning) return;
+            timerRunning = true;
+            const display = document.getElementById('timerDisplay');
+            display.classList.add('running');
+            display.classList.remove('stopped');
+
+            timerInterval = setInterval(() => {
+                timerSeconds++;
+                updateTimerDisplay();
+            }, 1000);
+        }
+
+        function stopTimer() {
+            if (!timerRunning) return;
+            timerRunning = false;
+            clearInterval(timerInterval);
+            const display = document.getElementById('timerDisplay');
+            display.classList.remove('running');
+            display.classList.add('stopped');
+
+            // Auto-record time to active team
+            if (activeTeam > 0) {
+                const mins = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+                const secs = (timerSeconds % 60).toString().padStart(2, '0');
+                const timeStr = `${mins}:${secs}`;
+                const roundKey = `r${currentRound}`;
+
+                if (!teamTimes[activeTeam]) teamTimes[activeTeam] = {};
+                teamTimes[activeTeam][roundKey] = timeStr;
+
+                updateTeamTimeDisplay(activeTeam);
+            }
+        }
+
+        function updateTeamTimeDisplay(team) {
+            const el = document.getElementById(`team${team}Time`);
+            const t = teamTimes[team] || {};
+            let html = '';
+            if (t.r1) html += `<span>R1: ${t.r1}</span>`;
+            if (t.r2) html += `<span>R2: ${t.r2}</span>`;
+            el.innerHTML = html;
+        }
+
+        function resetTimer() {
+            timerRunning = false;
+            clearInterval(timerInterval);
+            timerSeconds = 0;
+            updateTimerDisplay();
+            const display = document.getElementById('timerDisplay');
+            display.classList.remove('running', 'stopped');
+        }
+
+        function updateTimerDisplay() {
+            const mins = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+            const secs = (timerSeconds % 60).toString().padStart(2, '0');
+            document.getElementById('timerDisplay').textContent = `${mins}:${secs}`;
+        }
+
+        // ===== Confetti Effect (Golden Sparks) =====
+        function launchConfetti() {
+            const container = document.getElementById('confettiContainer');
+            const colors = ['#ffd700', '#c8a84e', '#d4b85c', '#ae0001', '#2ecc71', '#5b9bd5', '#a07828'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = Math.random() * 1 + 's';
+                confetti.style.animationDuration = (2 + Math.random() * 2) + 's';
+                confetti.style.width = (5 + Math.random() * 7) + 'px';
+                confetti.style.height = (5 + Math.random() * 7) + 'px';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '1px';
+                container.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 4000);
+            }
+        }
+
+        // ===== Keyboard Shortcuts =====
+        document.addEventListener('keydown', (e) => {
+            switch(e.code) {
+                case 'Space':
+                    e.preventDefault();
+                    if (timerRunning) stopTimer();
+                    else startTimer();
+                    break;
+                case 'KeyR':
+                    if (!e.metaKey && !e.ctrlKey) {
+                        e.preventDefault();
+                        toggleRoll();
+                    }
+                    break;
+                case 'Digit1': selectTeam(1); break;
+                case 'Digit2': selectTeam(2); break;
+                case 'Digit3': selectTeam(3); break;
+            }
+        });
+    </script>
+</body>
+</html>
