@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚡ 霍格沃茨婚礼挑战赛 ⚡</title>
+    <title>💍 Coco 婚礼挑战赛 💍</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Noto+Sans+SC:wght@400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Noto+Sans+SC:wght@400;700;900&display=swap');
 
         * {
             margin: 0;
@@ -15,16 +15,16 @@
 
         body {
             font-family: 'Noto Sans SC', sans-serif;
-            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 25%, #0d0d2b 50%, #141432 75%, #0a0a1a 100%);
+            background: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 25%, #1e0f3d 50%, #2a1845 75%, #1a0a2e 100%);
             background-attachment: fixed;
-            color: #e8d5b5;
+            color: #f0e6ff;
             min-height: 100vh;
             overflow-y: auto;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* Magical stars background */
+        /* Soft floating particles */
         body::before {
             content: '';
             position: fixed;
@@ -33,18 +33,18 @@
             width: 100%;
             height: 100%;
             background-image: 
-                radial-gradient(1px 1px at 15% 25%, rgba(255, 215, 0, 0.6), transparent),
-                radial-gradient(1.5px 1.5px at 35% 65%, rgba(255, 223, 120, 0.5), transparent),
-                radial-gradient(1px 1px at 55% 15%, rgba(255, 215, 0, 0.6), transparent),
-                radial-gradient(2px 2px at 75% 45%, rgba(255, 223, 120, 0.4), transparent),
-                radial-gradient(1px 1px at 10% 75%, rgba(200, 180, 140, 0.5), transparent),
-                radial-gradient(1.5px 1.5px at 85% 85%, rgba(255, 215, 0, 0.3), transparent),
-                radial-gradient(1px 1px at 45% 55%, rgba(255, 223, 120, 0.4), transparent),
-                radial-gradient(2px 2px at 65% 90%, rgba(255, 215, 0, 0.3), transparent),
-                radial-gradient(1px 1px at 90% 30%, rgba(200, 180, 140, 0.5), transparent),
+                radial-gradient(1.5px 1.5px at 15% 25%, rgba(255, 182, 193, 0.5), transparent),
+                radial-gradient(1px 1px at 35% 65%, rgba(255, 215, 0, 0.4), transparent),
+                radial-gradient(1.5px 1.5px at 55% 15%, rgba(255, 182, 193, 0.4), transparent),
+                radial-gradient(2px 2px at 75% 45%, rgba(255, 215, 0, 0.3), transparent),
+                radial-gradient(1px 1px at 10% 75%, rgba(216, 180, 254, 0.4), transparent),
+                radial-gradient(1.5px 1.5px at 85% 85%, rgba(255, 182, 193, 0.3), transparent),
+                radial-gradient(1px 1px at 45% 55%, rgba(255, 215, 0, 0.3), transparent),
+                radial-gradient(2px 2px at 65% 90%, rgba(216, 180, 254, 0.3), transparent),
+                radial-gradient(1px 1px at 90% 30%, rgba(255, 182, 193, 0.4), transparent),
                 radial-gradient(1.5px 1.5px at 25% 50%, rgba(255, 215, 0, 0.3), transparent),
-                radial-gradient(1px 1px at 5% 40%, rgba(255, 223, 120, 0.4), transparent),
-                radial-gradient(1px 1px at 50% 80%, rgba(255, 215, 0, 0.5), transparent);
+                radial-gradient(1px 1px at 5% 40%, rgba(216, 180, 254, 0.3), transparent),
+                radial-gradient(1px 1px at 50% 80%, rgba(255, 182, 193, 0.4), transparent);
             animation: twinkle 5s ease-in-out infinite alternate;
             pointer-events: none;
             z-index: 0;
@@ -68,14 +68,14 @@
         /* ===== Header: Title & Round Info ===== */
         .game-title {
             text-align: center;
-            font-family: 'Cinzel', serif;
-            font-size: 1.6em;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
             font-weight: 900;
-            letter-spacing: 6px;
-            background: linear-gradient(180deg, #ffd700, #c8a84e, #ffd700);
+            letter-spacing: 5px;
+            background: linear-gradient(180deg, #ffb6c1, #ffd700, #ffb6c1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 2px 8px rgba(255, 215, 0, 0.3));
+            filter: drop-shadow(0 2px 8px rgba(255, 182, 193, 0.3));
             padding: 5px 0 0;
         }
 
@@ -83,13 +83,12 @@
             text-align: center;
             padding: 4px 0 8px;
             font-size: 1.2em;
-            color: rgba(232, 213, 181, 0.7);
+            color: rgba(240, 230, 255, 0.7);
             letter-spacing: 3px;
-            font-family: 'Cinzel', serif;
         }
 
         .round-info span {
-            background: linear-gradient(90deg, #ffd700, #c8a84e);
+            background: linear-gradient(90deg, #ffb6c1, #ffd700);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 900;
@@ -106,10 +105,10 @@
         }
 
         .team-card {
-            background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.01));
+            background: linear-gradient(145deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02));
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(200, 168, 78, 0.25);
-            border-radius: 12px;
+            border: 1px solid rgba(255, 182, 193, 0.2);
+            border-radius: 14px;
             padding: 12px 28px;
             text-align: center;
             min-width: 200px;
@@ -125,20 +124,17 @@
             left: 0;
             right: 0;
             height: 3px;
-            border-radius: 12px 12px 0 0;
+            border-radius: 14px 14px 0 0;
         }
 
-        /* Gryffindor: red/gold */
-        .team-card:nth-child(1)::before { background: linear-gradient(90deg, #ae0001, #d3a625); }
-        /* Slytherin: green/silver */
-        .team-card:nth-child(2)::before { background: linear-gradient(90deg, #1a472a, #5d5d5d); }
-        /* Ravenclaw: blue/bronze */
-        .team-card:nth-child(3)::before { background: linear-gradient(90deg, #0e1a40, #946b2d); }
+        .team-card:nth-child(1)::before { background: linear-gradient(90deg, #ff6b6b, #ffd700); }
+        .team-card:nth-child(2)::before { background: linear-gradient(90deg, #4ecdc4, #44bd9e); }
+        .team-card:nth-child(3)::before { background: linear-gradient(90deg, #a78bfa, #818cf8); }
 
         .team-card.highlight {
             transform: scale(1.05);
-            border-color: rgba(255, 215, 0, 0.7);
-            box-shadow: 0 0 25px rgba(255, 215, 0, 0.15), inset 0 0 20px rgba(255, 215, 0, 0.05);
+            border-color: rgba(255, 215, 0, 0.6);
+            box-shadow: 0 0 25px rgba(255, 182, 193, 0.15), inset 0 0 20px rgba(255, 215, 0, 0.05);
         }
 
         .team-name {
@@ -149,11 +145,10 @@
             cursor: pointer;
             border-bottom: 1px dashed transparent;
             transition: border-color 0.2s;
-            font-family: 'Cinzel', 'Noto Sans SC', serif;
         }
 
         .team-name:hover {
-            border-bottom-color: rgba(232, 213, 181, 0.3);
+            border-bottom-color: rgba(240, 230, 255, 0.3);
         }
 
         .team-name-input {
@@ -161,7 +156,7 @@
             font-weight: 700;
             letter-spacing: 2px;
             background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(200, 168, 78, 0.4);
+            border: 1px solid rgba(255, 182, 193, 0.4);
             border-radius: 6px;
             color: inherit;
             text-align: center;
@@ -171,16 +166,16 @@
             font-family: 'Noto Sans SC', sans-serif;
         }
 
-        .team-card:nth-child(1) .team-name { color: #e74c3c; }
-        .team-card:nth-child(2) .team-name { color: #2ecc71; }
-        .team-card:nth-child(3) .team-name { color: #5b9bd5; }
+        .team-card:nth-child(1) .team-name { color: #ff6b6b; }
+        .team-card:nth-child(2) .team-name { color: #4ecdc4; }
+        .team-card:nth-child(3) .team-name { color: #a78bfa; }
 
         .team-scores {
             display: flex;
             justify-content: center;
             gap: 12px;
             font-size: 0.8em;
-            color: rgba(232, 213, 181, 0.45);
+            color: rgba(240, 230, 255, 0.4);
             margin-bottom: 4px;
         }
 
@@ -189,12 +184,12 @@
             font-weight: 900;
             color: #ffd700;
             text-shadow: 0 0 15px rgba(255, 215, 0, 0.25);
-            font-family: 'Cinzel', serif;
+            font-family: 'Playfair Display', serif;
         }
 
         .team-time {
             font-size: 0.85em;
-            color: rgba(200, 168, 78, 0.7);
+            color: rgba(255, 182, 193, 0.6);
             margin: 4px 0 2px;
             min-height: 1.2em;
             letter-spacing: 1px;
@@ -204,15 +199,15 @@
             display: inline-block;
             margin: 0 4px;
             padding: 1px 6px;
-            background: rgba(200, 168, 78, 0.1);
+            background: rgba(255, 182, 193, 0.1);
             border-radius: 4px;
             font-variant-numeric: tabular-nums;
         }
 
         .score-btn {
-            background: rgba(200, 168, 78, 0.08);
-            border: 1px solid rgba(200, 168, 78, 0.25);
-            color: #e8d5b5;
+            background: rgba(255, 182, 193, 0.08);
+            border: 1px solid rgba(255, 182, 193, 0.25);
+            color: #f0e6ff;
             width: 32px;
             height: 32px;
             border-radius: 50%;
@@ -245,17 +240,17 @@
             width: 90%;
             max-width: 1000px;
             min-height: 220px;
-            background: linear-gradient(145deg, rgba(200, 168, 78, 0.06), rgba(10, 10, 26, 0.8));
+            background: linear-gradient(145deg, rgba(255, 182, 193, 0.05), rgba(26, 10, 46, 0.8));
             backdrop-filter: blur(15px);
-            border: 2px solid rgba(200, 168, 78, 0.2);
-            border-radius: 16px;
+            border: 2px solid rgba(255, 182, 193, 0.18);
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 30px 50px;
             position: relative;
             overflow: hidden;
-            box-shadow: inset 0 0 40px rgba(200, 168, 78, 0.03);
+            box-shadow: inset 0 0 40px rgba(255, 182, 193, 0.03);
         }
 
         .action-display::before {
@@ -265,7 +260,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: conic-gradient(from 0deg, transparent, rgba(200, 168, 78, 0.04), transparent, rgba(200, 168, 78, 0.02), transparent);
+            background: conic-gradient(from 0deg, transparent, rgba(255, 182, 193, 0.03), transparent, rgba(255, 215, 0, 0.02), transparent);
             animation: rotate 10s linear infinite;
             pointer-events: none;
         }
@@ -281,11 +276,11 @@
             line-height: 1.4;
             z-index: 1;
             transition: all 0.1s;
-            background: linear-gradient(180deg, #ffecd2, #c8a84e);
+            background: linear-gradient(180deg, #ffe4e9, #ffd700, #ffb6c1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: none;
-            filter: drop-shadow(0 2px 10px rgba(200, 168, 78, 0.2));
+            filter: drop-shadow(0 2px 10px rgba(255, 182, 193, 0.2));
         }
 
         .action-text.rolling {
@@ -293,9 +288,9 @@
         }
 
         @keyframes textBlur {
-            0% { filter: blur(0px) drop-shadow(0 2px 10px rgba(200, 168, 78, 0.2)); }
-            50% { filter: blur(2px) drop-shadow(0 2px 10px rgba(200, 168, 78, 0.2)); }
-            100% { filter: blur(0px) drop-shadow(0 2px 10px rgba(200, 168, 78, 0.2)); }
+            0% { filter: blur(0px) drop-shadow(0 2px 10px rgba(255, 182, 193, 0.2)); }
+            50% { filter: blur(2px) drop-shadow(0 2px 10px rgba(255, 182, 193, 0.2)); }
+            100% { filter: blur(0px) drop-shadow(0 2px 10px rgba(255, 182, 193, 0.2)); }
         }
 
         .action-text.revealed {
@@ -313,10 +308,9 @@
             top: 15px;
             left: 25px;
             font-size: 0.85em;
-            color: rgba(200, 168, 78, 0.5);
+            color: rgba(255, 182, 193, 0.45);
             letter-spacing: 3px;
             z-index: 1;
-            font-family: 'Cinzel', serif;
         }
 
         .roll-btn {
@@ -324,21 +318,21 @@
             padding: 14px 50px;
             font-size: 1.3em;
             font-weight: 700;
-            font-family: 'Cinzel', 'Noto Sans SC', serif;
-            background: linear-gradient(135deg, #c8a84e, #a07828, #c8a84e);
-            color: #1a1a3e;
-            border: 2px solid rgba(200, 168, 78, 0.4);
-            border-radius: 8px;
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #ff6b9d, #c44569, #ff6b9d);
+            color: #fff;
+            border: 2px solid rgba(255, 107, 157, 0.4);
+            border-radius: 10px;
             cursor: pointer;
             letter-spacing: 3px;
             transition: all 0.3s;
-            box-shadow: 0 4px 20px rgba(200, 168, 78, 0.25);
+            box-shadow: 0 4px 20px rgba(255, 107, 157, 0.3);
         }
 
         .roll-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(200, 168, 78, 0.4);
-            background: linear-gradient(135deg, #d4b85c, #b8922e, #d4b85c);
+            box-shadow: 0 6px 30px rgba(255, 107, 157, 0.45);
+            background: linear-gradient(135deg, #ff85b1, #d94f7a, #ff85b1);
         }
 
         .roll-btn:active {
@@ -352,9 +346,9 @@
         }
 
         .roll-btn.rolling-active {
-            background: linear-gradient(135deg, #ae0001, #d32f2f);
-            border-color: rgba(174, 0, 1, 0.6);
-            color: #ffd700;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            border-color: rgba(231, 76, 60, 0.6);
+            color: #fff;
             animation: rollBtnPulse 0.5s ease-in-out infinite;
         }
 
@@ -380,7 +374,6 @@
             align-items: flex-start;
         }
 
-        /* Timer Controls Row */
         .timer-controls-row {
             display: flex;
             align-items: center;
@@ -407,27 +400,27 @@
         .btn-start:hover { background: rgba(46, 204, 113, 0.25); }
 
         .btn-stop {
-            background: rgba(174, 0, 1, 0.12);
-            border-color: #ae0001;
+            background: rgba(231, 76, 60, 0.12);
+            border-color: #e74c3c;
             color: #e74c3c;
         }
-        .btn-stop:hover { background: rgba(174, 0, 1, 0.25); }
+        .btn-stop:hover { background: rgba(231, 76, 60, 0.25); }
 
         .btn-reset {
-            background: rgba(232, 213, 181, 0.06);
-            border-color: rgba(232, 213, 181, 0.25);
-            color: rgba(232, 213, 181, 0.6);
+            background: rgba(240, 230, 255, 0.06);
+            border-color: rgba(240, 230, 255, 0.25);
+            color: rgba(240, 230, 255, 0.6);
         }
-        .btn-reset:hover { background: rgba(232, 213, 181, 0.12); }
+        .btn-reset:hover { background: rgba(240, 230, 255, 0.12); }
 
         /* Timer Display */
         .timer-display {
             font-size: 6em;
             font-weight: 900;
             font-variant-numeric: tabular-nums;
-            font-family: 'Cinzel', serif;
-            color: #e8d5b5;
-            text-shadow: 0 0 30px rgba(200, 168, 78, 0.2);
+            font-family: 'Playfair Display', serif;
+            color: #f0e6ff;
+            text-shadow: 0 0 30px rgba(255, 182, 193, 0.2);
             min-width: 280px;
             text-align: center;
             letter-spacing: 3px;
@@ -460,9 +453,9 @@
             padding: 6px 16px;
             font-size: 0.8em;
             font-family: 'Noto Sans SC', sans-serif;
-            background: rgba(200, 168, 78, 0.08);
-            border: 1px solid rgba(200, 168, 78, 0.25);
-            color: rgba(232, 213, 181, 0.6);
+            background: rgba(255, 182, 193, 0.08);
+            border: 1px solid rgba(255, 182, 193, 0.25);
+            color: rgba(240, 230, 255, 0.6);
             border-radius: 6px;
             cursor: pointer;
             transition: all 0.2s;
@@ -470,12 +463,12 @@
         }
 
         .round-btn:hover {
-            background: rgba(200, 168, 78, 0.2);
-            border-color: rgba(200, 168, 78, 0.5);
-            color: #ffd700;
+            background: rgba(255, 182, 193, 0.2);
+            border-color: rgba(255, 182, 193, 0.5);
+            color: #ffb6c1;
         }
 
-        /* ===== Confetti (Golden Sparks) ===== */
+        /* ===== Confetti ===== */
         .confetti-container {
             position: fixed;
             top: 0;
@@ -508,7 +501,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(5, 5, 15, 0.96);
+            background: rgba(15, 5, 25, 0.96);
             z-index: 999;
             align-items: center;
             justify-content: center;
@@ -526,17 +519,17 @@
         .rules-title {
             font-size: 3em;
             font-weight: 900;
-            font-family: 'Cinzel', serif;
-            color: #ffd700;
+            font-family: 'Playfair Display', serif;
+            color: #ffb6c1;
             margin-bottom: 50px;
             letter-spacing: 5px;
-            text-shadow: 0 0 30px rgba(255, 215, 0, 0.25);
+            text-shadow: 0 0 30px rgba(255, 182, 193, 0.25);
         }
 
         .rules-body {
             font-size: 2.2em;
             font-weight: 700;
-            color: #e8d5b5;
+            color: #f0e6ff;
             line-height: 2.2;
             letter-spacing: 2px;
         }
@@ -548,7 +541,7 @@
         .rules-hint {
             margin-top: 60px;
             font-size: 1em;
-            color: rgba(232, 213, 181, 0.25);
+            color: rgba(240, 230, 255, 0.25);
             letter-spacing: 3px;
         }
 
@@ -556,10 +549,10 @@
         .rules-btn {
             padding: 8px 28px;
             font-size: 1em;
-            font-family: 'Cinzel', 'Noto Sans SC', serif;
-            background: rgba(200, 168, 78, 0.1);
-            border: 1px solid rgba(200, 168, 78, 0.35);
-            color: #c8a84e;
+            font-family: 'Noto Sans SC', sans-serif;
+            background: rgba(255, 182, 193, 0.1);
+            border: 1px solid rgba(255, 182, 193, 0.35);
+            color: #ffb6c1;
             border-radius: 8px;
             cursor: pointer;
             letter-spacing: 2px;
@@ -568,8 +561,8 @@
         }
 
         .rules-btn:hover {
-            background: rgba(200, 168, 78, 0.2);
-            border-color: rgba(200, 168, 78, 0.6);
+            background: rgba(255, 182, 193, 0.2);
+            border-color: rgba(255, 182, 193, 0.6);
         }
 
         /* ===== Responsive ===== */
@@ -580,7 +573,7 @@
             .action-display { padding: 20px 25px; min-height: 160px; }
             .timer-display { font-size: 4em; min-width: 200px; }
             .bottom-section { gap: 20px; }
-            .game-title { font-size: 1.3em; }
+            .game-title { font-size: 1.4em; }
         }
 
         @media (max-width: 640px) {
@@ -608,10 +601,10 @@
     <!-- Rules Full-Screen Overlay -->
     <div class="rules-overlay" id="rulesOverlay" onclick="if(event.target===this)this.style.display='none'">
         <div class="rules-content">
-            <div class="rules-title">📜 霍格沃茨挑战规则 📜</div>
+            <div class="rules-title">📜 游戏规则 📜</div>
             <div class="rules-body">
-                <div class="rule-item">1️⃣ 每队派一位巫师上场，<span style="color:#e74c3c; font-weight:900;">不能看大屏幕</span></div>
-                <div class="rule-item">2️⃣ 队友用 <span style="color:#2ecc71; font-weight:900; font-size:1.1em;">YES</span> / <span style="color:#e74c3c; font-weight:900; font-size:1.1em;">NO</span> 引导<br><span style="font-size:0.7em; color:rgba(232,213,181,0.4);">（靠近目标 = YES，远离目标 = NO）</span></div>
+                <div class="rule-item">1️⃣ 每队派一人上场，<span style="color:#e74c3c; font-weight:900;">不能看大屏幕</span></div>
+                <div class="rule-item">2️⃣ 队友用 <span style="color:#2ecc71; font-weight:900; font-size:1.1em;">YES</span> / <span style="color:#e74c3c; font-weight:900; font-size:1.1em;">NO</span> 引导<br><span style="font-size:0.7em; color:rgba(240,230,255,0.4);">（靠近目标 = YES，远离目标 = NO）</span></div>
                 <div class="rule-item" style="margin-bottom:0;">3️⃣ 用时最短获胜，分别获得 <span style="color:#ffd700; font-size:1.3em; font-weight:900;">3</span> / <span style="color:#c0c0c0; font-size:1.3em; font-weight:900;">2</span> / <span style="color:#cd7f32; font-size:1.3em; font-weight:900;">1</span> 积分 🏆</div>
             </div>
             <div class="rules-hint">点击任意处关闭</div>
@@ -620,11 +613,11 @@
 
     <div class="container">
         <!-- Title -->
-        <div class="game-title">⚡ HOGWARTS WEDDING CHALLENGE ⚡</div>
+        <div class="game-title">💍 Coco 婚礼挑战赛 💍</div>
 
         <!-- Round Info -->
         <div class="round-info">
-            🪄 当前：第 <span id="currentRound">1</span> 轮 🪄
+            ✨ 当前：第 <span id="currentRound">1</span> 轮 ✨
         </div>
 
         <!-- Rules Button -->
@@ -642,7 +635,7 @@
         <!-- Scoreboard -->
         <div class="scoreboard">
             <div class="team-card" id="team1Card" onclick="selectTeam(1)" style="cursor:pointer">
-                <div class="team-name" ondblclick="editTeamName(this, 1)">🦁 格兰芬多</div>
+                <div class="team-name" ondblclick="editTeamName(this, 1)">🔴 队伍一</div>
                 <div class="team-scores">
                     <span>R1: <span id="team1r1">0</span></span>
                     <span>R2: <span id="team1r2">0</span></span>
@@ -655,7 +648,7 @@
                 </div>
             </div>
             <div class="team-card" id="team2Card" onclick="selectTeam(2)" style="cursor:pointer">
-                <div class="team-name" ondblclick="editTeamName(this, 2)">🐍 斯莱特林</div>
+                <div class="team-name" ondblclick="editTeamName(this, 2)">🟢 队伍二</div>
                 <div class="team-scores">
                     <span>R1: <span id="team2r1">0</span></span>
                     <span>R2: <span id="team2r2">0</span></span>
@@ -668,7 +661,7 @@
                 </div>
             </div>
             <div class="team-card" id="team3Card" onclick="selectTeam(3)" style="cursor:pointer">
-                <div class="team-name" ondblclick="editTeamName(this, 3)">🦅 拉文克劳</div>
+                <div class="team-name" ondblclick="editTeamName(this, 3)">🟣 队伍三</div>
                 <div class="team-scores">
                     <span>R1: <span id="team3r1">0</span></span>
                     <span>R2: <span id="team3r2">0</span></span>
@@ -685,10 +678,10 @@
         <!-- Action Display -->
         <div class="action-section">
             <div class="action-display">
-                <div class="action-label">🪄 魔法任务</div>
+                <div class="action-label">🎯 挑战任务</div>
                 <div class="action-text" id="actionText">点击下方按钮开始抽取任务！</div>
             </div>
-            <button class="roll-btn" id="rollBtn" onclick="toggleRoll()">⚡ 随机抽取任务</button>
+            <button class="roll-btn" id="rollBtn" onclick="toggleRoll()">🎲 随机抽取任务</button>
         </div>
 
         <!-- Bottom: Controls Left + Timer Right -->
@@ -754,8 +747,8 @@
         let usedActions = [];
 
         // Team names & times
-        const teamEmojis = { 1: '🦁', 2: '🐍', 3: '🦅' };
-        const teamNames = { 1: '格兰芬多', 2: '斯莱特林', 3: '拉文克劳' };
+        const teamEmojis = { 1: '🔴', 2: '🟢', 3: '🟣' };
+        const teamNames = { 1: '队伍一', 2: '队伍二', 3: '队伍三' };
         const teamTimes = { 1: {}, 2: {}, 3: {} };
 
         // ===== Score Functions =====
@@ -852,7 +845,7 @@
             actionEl.classList.add('revealed');
             usedActions.push(finalAction);
 
-            btn.textContent = '⚡ 随机抽取任务';
+            btn.textContent = '🎲 随机抽取任务';
             btn.classList.remove('rolling-active');
             launchConfetti();
         }
@@ -947,10 +940,10 @@
             document.getElementById('timerDisplay').textContent = `${mins}:${secs}`;
         }
 
-        // ===== Confetti Effect (Golden Sparks) =====
+        // ===== Confetti Effect =====
         function launchConfetti() {
             const container = document.getElementById('confettiContainer');
-            const colors = ['#ffd700', '#c8a84e', '#d4b85c', '#ae0001', '#2ecc71', '#5b9bd5', '#a07828'];
+            const colors = ['#ffb6c1', '#ffd700', '#ff6b9d', '#4ecdc4', '#a78bfa', '#ff6b6b', '#f0e6ff'];
             
             for (let i = 0; i < 50; i++) {
                 const confetti = document.createElement('div');
