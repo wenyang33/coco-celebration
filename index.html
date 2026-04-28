@@ -468,6 +468,14 @@
             color: #ffb6c1;
         }
 
+        .round-btn.active-round {
+            background: rgba(255, 221, 0, 0.2);
+            border-color: #ffdd00;
+            color: #ffdd00;
+            font-weight: 900;
+            box-shadow: 0 0 10px rgba(255, 221, 0, 0.3);
+        }
+
         /* ===== Confetti ===== */
         .confetti-container {
             position: fixed;
@@ -627,8 +635,8 @@
 
         <!-- Round Controls -->
         <div class="round-controls">
-            <button class="round-btn" onclick="switchRound(1)">第1轮</button>
-            <button class="round-btn" onclick="switchRound(2)">第2轮</button>
+            <button class="round-btn active-round" data-round="1" onclick="switchRound(1)">第1轮</button>
+            <button class="round-btn" data-round="2" onclick="switchRound(2)">第2轮</button>
             <button class="round-btn" onclick="resetAll()">重置全部</button>
         </div>
 
@@ -762,6 +770,13 @@
         function switchRound(round) {
             currentRound = round;
             document.getElementById('currentRound').textContent = round;
+            updateRoundButtons();
+        }
+
+        function updateRoundButtons() {
+            document.querySelectorAll('.round-btn[data-round]').forEach(btn => {
+                btn.classList.toggle('active-round', parseInt(btn.dataset.round) === currentRound);
+            });
         }
 
         function resetAll() {
