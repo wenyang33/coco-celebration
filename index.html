@@ -682,6 +682,7 @@
                 <div class="action-text" id="actionText">点击下方按钮开始抽取任务！</div>
             </div>
             <button class="roll-btn" id="rollBtn" onclick="toggleRoll()">🎲 随机抽取任务</button>
+            <button class="timer-btn btn-reset" id="toggleTaskBtn" onclick="toggleTaskVisibility()" style="margin-top:10px;">👁 隐藏任务</button>
         </div>
 
         <!-- Bottom: Controls Left + Timer Right -->
@@ -700,7 +701,6 @@
     <script>
         // ===== Actions =====
         const actions = [
-            "把桌上的一把叉子插进院子的土里",
             "单膝跪地和新郎击掌",
             "和新郎击掌一次",
             "亲一下喜糖盒",
@@ -948,6 +948,21 @@
                 confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '1px';
                 container.appendChild(confetti);
                 setTimeout(() => confetti.remove(), 4000);
+            }
+        }
+
+        // ===== Toggle Task Visibility =====
+        let taskHidden = false;
+        function toggleTaskVisibility() {
+            const actionEl = document.getElementById('actionText');
+            const btn = document.getElementById('toggleTaskBtn');
+            taskHidden = !taskHidden;
+            if (taskHidden) {
+                actionEl.style.visibility = 'hidden';
+                btn.textContent = '👁 显示任务';
+            } else {
+                actionEl.style.visibility = 'visible';
+                btn.textContent = '👁 隐藏任务';
             }
         }
 
