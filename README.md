@@ -1,5 +1,7 @@
 # 💍 Coco 婚礼挑战赛
 
+🌐 **在线体验 / Live Demo:** [https://wenyang33.github.io/coco-celebration/](https://wenyang33.github.io/coco-celebration/)
+
 一个婚礼派对游戏 Web App，适合投影到大屏幕上使用。
 
 A wedding party game Web App, designed to be projected onto a big screen.
